@@ -17,9 +17,9 @@ ShooterAutonomousRedGroup::ShooterAutonomousRedGroup() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	Requires(drive);
-	Requires(shooter);
-	AddSequential(new TurnAndDrive(distance,-45));//drive in a right arc to be in front of the target
+	//Requires(drive);
+	//Requires(shooter);
+	//AddSequential(new TurnAndDrive(distance,-45));//drive in a right arc to be in front of the target
 	AddSequential(new TurnAndDrive(0,-90)); //turn to face goal
 	AddSequential(new ShooterAutonomous());// need to work on the ShooterAutonomous code
 	AddSequential(new TurnAndDrive(0,135));//turn back

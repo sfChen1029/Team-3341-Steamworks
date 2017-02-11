@@ -3,7 +3,7 @@
 ShooterAutonomous::ShooterAutonomous() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(shooter);
+	//Requires(shooter);
 
 		distance = 0;
 		//azimuth = 0;
@@ -35,7 +35,7 @@ void ShooterAutonomous::Execute() {
 	//double current_rate = shooter->getRate();
 		//double pwm_val = speedPid->Tick(current_rate);
 		double speedVal = findSpeed(distance);
-		shooter->setSpeed(speedVal);
+		//shooter->setSpeed(speedVal);
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,7 @@ bool ShooterAutonomous::IsFinished() {
 // Called once after isFinished returns true
 void ShooterAutonomous::End() {
 
-	shooter->loadBall();
+	//shooter->loadBall();
 }
 
 // Called when another command which requires one or more of the same

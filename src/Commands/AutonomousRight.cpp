@@ -18,7 +18,7 @@ AutonomousRight::AutonomousRight() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	Requires(drive);
+	//Requires(drive);
 	    AddSequential(new TurnAndDrive(100,0));
 		AddSequential(new TurnAndDrive(0,90));
 		AddSequential(new NavigateCV());

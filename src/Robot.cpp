@@ -11,6 +11,7 @@
 #include "Utilities/NetworkTablesInterface.h"
 #include "Commands/Forward.h"
 #include "Subsystems/DriveTrain.h"
+#include "Commands/AutonomousLeft.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -19,6 +20,7 @@ public:
 		//chooser.AddDefault("Default Auto", new ExampleCommand());
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+		autonomousCommand = new AutonomousLeft();
 		//foreward = new Forward();
 		//left = new Talon(0);
 		//right = new Talon(1);
@@ -57,9 +59,9 @@ public:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset(chooser.GetSelected());
+		//autonomousCommand.reset(chooser.GetSelected());
 
-		if (autonomousCommand.get() != nullptr) {
+		if (autonomousCommand != nullptr) {
 			autonomousCommand->Start();
 		}
 	}
@@ -103,7 +105,7 @@ public:
 	}
 
 private:
-	std::unique_ptr<frc::Command> autonomousCommand;
+	CommandGroup* autonomousCommand;
 	frc::SendableChooser<frc::Command*> chooser;
 	//Command* foreward;
 	//Talon* left;

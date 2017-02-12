@@ -19,7 +19,8 @@ DriveTrain::DriveTrain() :
 {
     encoderLeft->SetDistancePerPulse(1.0);
     encoderRight->SetDistancePerPulse(1.0);
-
+    left->SetInverted(true);//for roborio #2
+    right->SetInverted(true);//for roborio#2
     //gyro->Calibrate();
     //gyro->Reset();
 }
@@ -64,13 +65,13 @@ void DriveTrain::arcadeDrive(float moveValue, float rotateValue)
     {
         if(rotateValue > 0.0)
         {
-            leftMotorOutput = moveValue - rotateValue;
+            leftMotorOutput = (moveValue - rotateValue);
             rightMotorOutput = max(moveValue, rotateValue);
         }
         else
         {
             leftMotorOutput = max(moveValue, -rotateValue);
-            rightMotorOutput = moveValue + rotateValue;
+            rightMotorOutput = (moveValue + rotateValue);
         }
     }
     else
@@ -78,12 +79,12 @@ void DriveTrain::arcadeDrive(float moveValue, float rotateValue)
         if(rotateValue > 0.0)
         {
             leftMotorOutput = - max(-moveValue, rotateValue);
-            rightMotorOutput = moveValue + rotateValue;
+            rightMotorOutput = (moveValue + rotateValue);
         }
         else
         {
             leftMotorOutput = moveValue - rotateValue;
-            rightMotorOutput = - max(-moveValue, -rotateValue);
+            rightMotorOutput = -max(-moveValue, -rotateValue);
         }
     }
 

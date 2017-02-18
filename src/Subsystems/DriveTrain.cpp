@@ -19,8 +19,8 @@ DriveTrain::DriveTrain() :
 {
     encoderLeft->SetDistancePerPulse(1.0);
     encoderRight->SetDistancePerPulse(1.0);
-    left->SetInverted(true);//for roborio #2
-    right->SetInverted(true);//for roborio#2
+    left->SetInverted(true);
+    right->SetInverted(true);
     //gyro->Calibrate();
     //gyro->Reset();
 }
@@ -92,7 +92,7 @@ void DriveTrain::arcadeDrive(float moveValue, float rotateValue)
     float limitedR = -DriveTrain::Limit(rightMotorOutput, 1.0);
 
     left->Set(-limitedL);
-    right->Set(-limitedR);
+    right->Set(-limitedR); //removed negatives
 }
 
 void DriveTrain::tankDrive(float moveValueLeft, float moveValueRight)
@@ -135,7 +135,7 @@ double DriveTrain::getDistance()
     (
         (double) ((encoderLeft->Get()) / ticksToDistance) -
         (double) ((encoderRight->Get()) / ticksToDistance)
-    ) / -2.0;
+    ) / 2.0;
 }
 
 double DriveTrain::getRate()
@@ -146,7 +146,7 @@ double DriveTrain::getRate()
     (
         (double) ((encoderLeft->GetRate()) / ticksToDistance) -
         (double) ((encoderRight->GetRate()) / ticksToDistance)
-    ) / -2.0;
+    ) / 2.0;
 
 }
 
@@ -165,7 +165,9 @@ void DriveTrain::InitDefaultCommand()
 
 double DriveTrain::getLeftEncoderDistance()
 {
+	//TODO negate this and the right one below
 	//return this->left->GetPosition();
+
 	return this->encoderLeft->GetDistance();
 }
 

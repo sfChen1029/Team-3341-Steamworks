@@ -82,13 +82,19 @@ public:
 
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
+		frc::SmartDashboard::PutNumber("EncoderTest", CommandBase::drive->getLeftEncoderDistance());
+		frc::SmartDashboard::PutNumber("EncoderRight", CommandBase::drive->getRightEncoderDistance());
+		frc::SmartDashboard::PutBoolean("CVGearFound", NetworkTablesInterface::gearFound());
+				frc::SmartDashboard::PutNumber("CVGearDistance",NetworkTablesInterface::getGearDistance());
+				frc::SmartDashboard::PutNumber("CVGearAltitude", NetworkTablesInterface::getGearAltitude());
+				frc::SmartDashboard::PutNumber("CVGearAzimuth", NetworkTablesInterface::getGearAzimuth());
 	}
 
 	void TestInit() override {
 
 		//foreward->Start();
-		CommandBase::drive->setSpeedLeft(0.5);
-		CommandBase::drive->setSpeedRight(-0.5);
+		//CommandBase::drive->setSpeedLeft(0.5);
+		//CommandBase::drive->setSpeedRight(-0.5);
 	}
 
 	void TestPeriodic() override {
